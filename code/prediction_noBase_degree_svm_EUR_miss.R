@@ -18,13 +18,21 @@ for(k in 1:17){
     for(p in rest){
       # x=data.frame(data[,-c(1,2,3,(p+6))])
       x=data.frame(data[,c(base,(p+4))])
-  x$pedigree.degree=factor(x$pedigree.degree)
-      for(j in err){
+ # x$pedigree.degree=factor(x$pedigree.degree)
+x[which(x[,1]==0.25),1]="a"
+  x[which(x[,1]==0.125),1]="b"
+  x[which(x[,1]==0.0625),1]="c"
+  x[which(x[,1]==0),1]="d"  
+for(j in err){
         results=matrix(NA,nrow=cycles, ncol=rep)
         data1=as.data.frame(fread(paste("merge_EUR_miss",miss,"_sim_table_multi_measurements_err",j,"_1_",fam,".txt",sep=''),head=T))
        x1=data.frame(data1[,c(base,(p+4))])
-  x1$pedigree.degree=factor(x1$pedigree.degree)
-	for(i in 1:rep){
+#  x1$pedigree.degree=factor(x1$pedigree.degree)
+x1[which(x1[,1]==0.25),1]="a"
+  x1[which(x1[,1]==0.125),1]="b"
+  x1[which(x1[,1]==0.0625),1]="c"
+  x1[which(x1[,1]==0),1]="d"
+       for(i in 1:rep){
           s=data.frame(matrix(sample(1:(floor(nrow(x)/cycles)*cycles)), ncol=cycles))
           for(r in 1:cycles){
             test=s[,r]
